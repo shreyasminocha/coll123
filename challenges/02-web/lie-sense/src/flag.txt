@@ -1,0 +1,7 @@
+# The Flag For This Challenge: A Comprehensive Guide
+
+## Chapter 1: The Flag
+
+flag{flag}
+
+The End.

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>lie sense</title>
+		<link rel="stylesheet" href="https://vanillacss.com/vanilla.css" />
+		<link rel="stylesheet" href="/static/style.css" />
+	</head>
+
+	<body>
+		<script>
+			fetch('/keys')
+				.then((r) => r.json())
+				.then((keys) => {
+					document
+						.querySelector('form')
+						.addEventListener('submit', (e) => {
+							e.preventDefault();
+
+							const key =
+								document.querySelector(
+									"input[name='key']",
+								).value;
+							if (keys.includes(key)) {
+								document.querySelector('form').submit();
+							} else {
+								alert('invalid key!');
+							}
+						});
+				});
+		</script>
+
+		<p>
+			I wrote a book titled
+			<em>The Flag For This Challenge: A Comprehensive Guide</em>. Feel
+			free to check it out! You'll need a license key, though.
+		</p>
+
+		<form method="POST" action="/product">
+			<input
+				type="text"
+				name="key"
+				size="40"
+				style="font-family: monospace"
+			/>
+			<input type="submit" value="Check license key" />
+		</form>
+	</body>
+</html>

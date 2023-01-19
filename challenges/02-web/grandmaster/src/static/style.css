@@ -1,0 +1,10 @@
+body {
+	max-width: 760px;
+	margin: 2em auto;
+	text-align: center;
+}
+
+.board {
+	display: inline-block;
+	padding: 1rem;
+}
