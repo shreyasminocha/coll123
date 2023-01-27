@@ -1,0 +1,139 @@
+\documentclass[11pt]{article}
+\usepackage{fullpage}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{multirow}
+
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+\else\Gin@nat@width\fi}
+\makeatother
+\let\Oldincludegraphics\includegraphics
+\usepackage[
+	colorlinks=true,
+	urlcolor=MidnightBlue,
+	plainpages=false,
+]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}
+\setcounter{secnumdepth}{0}
+
+\titleformat{\section}{\normalfont\scshape}{\thesection}{1em}{}
+
+\title{Intro to Competitive Hacking: Hack For Fun and Profit\footnote{Last modified: 2023-01-11}}
+\author{Shreyas Minocha}
+\date{Spring 2023}
+
+\begin{document}
+
+\maketitle
+
+\begin{flushleft}
+\section{Contact Information}\label{contact-information}
+
+\setlength{\tabcolsep}{0pt}
+\begin{tabular}{ll}
+\textbf{Instructor} & Shreyas Minocha \\
+\textbf{Contact} & \href{mailto:shreyasminocha@rice.edu}{\texttt{shreyasminocha@rice.edu}}; \texttt{twx\#3367} on Discord\\
+\textbf{Class Meeting Time}~~~~~ & Wed. 7:00PM--7:50PM CT \\
+\textbf{Class Location} & \href{https://www.openstreetmap.org/node/8379958483}{HUM} 119 \\
+\textbf{Office Hours} & By appointment
+\end{tabular}
+\setlength{\tabcolsep}{6pt}
+
+\section{Course Description}\label{course-description}
+
+According to the FBI, over 2.2 million complaints of internet crimes were made to the FBI's Internet Crime Complaint Center between 2015 and 2020. \textit{\textbf{What is ``secure enough''? How can we spot and avoid vulnerabilities?}} Adopting a ``hacker mindset'' is a useful tool to find potential vulnerabilities in the digital systems that surround us. We can then apply the same tools and attitudes to protect these systems—from physical security to healthcare technology—from malicious actors.
+
+Capture the Flag (CTF) competitions allow hacking enthusiasts to put their skills to a test in a fun, competitive environment. Competitors are presented with challenges of varying difficulty; capturing the titular flag may require reverse engineering a compiled binary, cracking passwords, bypassing authentication mechanisms, and more. In \textit{Intro to Competitive Hacking}, students will learn about CTF challenges and the concepts that underpin them. In class, they would be introduced to the theory behind networks, cryptography, the modern web, and more. Outside class, students will be assigned challenges from real CTFs to practice their hacking skills. Additionally, they will learn to watch for flaws in the software they write and to defend against vulnerabilities. Finally, they will be motivated to try to understand how digital black boxes work when they encounter them.
+
+\section{Course Objectives and Learning Outcomes}\label{course-objectives-and-learning-outcomes}
+
+This course aims to enable students to solve introductory-level CTF challenges and to prepare them to solve harder challenges across the major CTF categories (e.g., web exploitation, reverse engineering, cryptography, binary exploitation, forensics).
+
+% \begin{itemize}
+% 	\item Web Exploitation
+% 	\item Reverse Engineering
+% 	\item Cryptography
+% 	\item Binary Exploitation
+% 	\item Forensics
+% \end{itemize}
+
+% \begin{itemize}
+% 	\item Evaluate the various authentication methods in use on the internet.
+% 	\item Perform basic reverse engineering using tools like GDB and Ghidra.
+% 	% \item Spot and avoid common cryptography pitfalls.
+% 	\item Explain how networking protocols like TCP, UDP, and DNS work and use tools like Wireshark to analyze network traffic.
+% 	\item Execute basic buffer overflow attacks and explain how to defend against them.
+% \end{itemize}
+
+\section{Required Texts and Materials}\label{required-texts-and-materials}
+
+There is no required text. All course materials will be freely available.
+
+% \section{Exams and Papers}\label{exams-and-papers}
+
+\section{Grade Policies}\label{grade-policies}
+
+The course assignments will involve solving CTF-like challenges and submitting flags to a CTF platform. In addition to submitting flags, students will be expected to turn-in write-ups explaining their solutions or attempts. Full credit will be awarded for satisfactory write-ups for solved challenges. Partial credit may be awarded for incomplete challenges with write-ups that demonstrate sufficient effort. Students must achieve at least 70\% completion across modules to receive a satisfactory grade in the course.
+
+\section{Rice Honor Code}\label{rice-honor-code}
+
+Collaboration on challenges is prohibited unless explicitly permitted. Looking concepts up and adapting code from the internet (within the bounds of applicable copyright), however, is permitted. Additionally, students are welcome to discuss approaches with the instructor at office hours, by email, or over discord. Students may not publish their solutions or write-ups to publicly accessible channels, e.g. a public GitHub repository.
+
+In this course, all students will be held to the standards of the Rice
+Honor Code, a code that you pledged to honor when you matriculated at
+this institution. If you are unfamiliar with the details of this code
+and how it is administered, you should consult the Honor System Handbook
+at \url{https://honor.rice.edu/honor-system-handbook/}. This handbook
+outlines the University's expectations for the integrity of your
+academic work, the procedures for resolving alleged violations of those
+expectations, and the rights and responsibilities of students and
+faculty members throughout the process.
+
+\section{Disability Resource Center}\label{disability-resource-center}
+
+If you have a documented disability or other condition that may affect
+academic performance you should: 1) make sure this documentation is on
+file with the Disability Resource Center (Allen~Center, Room 111 /
+\href{mailto:adarice@rice.edu}{\texttt{adarice@rice.edu}} / $\times$5841) to determine
+the accommodations you need; and 2) talk with me to discuss your
+accommodation needs.
+
+\newpage
+\section{Course Schedule}\label{course-schedule}
+
+This schedule\footnote{\texttt{COLL123\{a\_sylly\_fl4g\}}} is only a guide for the course and is subject to change.
+
+\renewcommand\arraystretch{1.3}
+\begin{table}[h]
+	\begin{tabular}{|l|m{18em}|l|}
+	\hline
+	\textbf{Date} & \textbf{Content} & \textbf{Assignments} \\ \hline
+	January 11 & Introduction; Overview & Introductory challenges \\ \hline
+	January 18 & Intro to web & \multirow{3}*{Web challenges} \\ \cline{1-2}
+	January 25 & SQL and SQLI & \\ \cline{1-2}
+	February 1 & XSS and more & \\ \hline
+	February 8 & Intro to rev; Deobfuscation & \multirow{2}*{Reverse-engineering challenges} \\ \cline{1-2}
+	February 15 & GDB; IDA & \\ \hline
+	February 22 & Intro to pwn; x86 Review & \multirow{3}*{Pwning challenges} \\ \cline{1-2}
+	March 1 & Basic buffer overflows & \\ \cline{1-2}
+	March 8 & More binary exploitation & \\ \hline
+	March 15 & \textit{Spring Break} & — \\ \hline
+	March 22 & Intro to crypto; Stream and block ciphers & \multirow{2}*{Crypto challenges} \\ \cline{1-2}
+	March 29 & RSA and Diffie-Hellman & \\ \hline
+	April 5 & Intro to forensics & Forensics challenges \\ \hline
+	April 12 & Miscellaneous topics & Misc. challenges \\ \hline
+	April 19 & Review & — \\ \hline
+	\end{tabular}
+\end{table}
+
+\end{flushleft}
+
+\end{document}
