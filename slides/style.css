@@ -1,0 +1,7 @@
+/* @theme leet */
+
+@import 'default';
+
+* {
+	font-family: 'Fira Code', 'Hack', monospace;
+}
