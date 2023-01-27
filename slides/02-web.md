@@ -214,9 +214,111 @@ open(f'/tmp/{path}').read()
 
 ## sql
 
+note: this course will almost exclusively use sqlite through python's [`sqlite3`](https://docs.python.org/3/library/sqlite3.html) module
+
 ---
 
-### sql injection
+```sql
+create table users (username text primary key, password text);
+insert into users values ('admin', 'password');
+```
+
+note: never store passwords as plaintext lol
+
+---
+
+```sql
+select * from users;
+select * from users where username='admin';
+select * from users where username='admin' and password='password';
+select username from users where username='admin' and password='password';
+```
+
+---
+
+```sql
+delete from users where username='admin';
+```
+
+```sql
+drop table users;
+```
+
+---
+
+### sql injection 💉
+
+---
+
+BAD!
+
+```py
+# user-controlled, of course
+username = ...
+password = ...
+
+result = db.cursor().execute(
+    f"SELECT * FROM users WHERE username='{username}' AND password='{password}'"
+)
+```
+
+<!-- this is a common pattern: 'string interpolation' is risky. -->
+
+---
+
+Good :)
+
+```py
+username = ...
+password = ...
+
+result = db.cursor().execute(
+    "SELECT * FROM users WHERE username=? AND password=?", (username, password)
+)
+```
+
+---
+
+### sql injection patterns
+
+```py
+username = "admin"
+password = "invalid' or 1=1 --"
+
+result = db.cursor().execute(
+    f"SELECT * FROM users WHERE username='{username}' AND password='{password}'"
+)
+```
+
+note: `AND` has higher precedence than `OR` (thanks Ian!)
+
+---
+
+```py
+username = "joe"
+password = "invalid' or role='superuser' --"
+
+result = db.cursor().execute(
+    f"SELECT * FROM users WHERE username='{username}' AND password='{password}'"
+)
+```
+
+---
+
+```py
+new_name = "Foo Bar', grade='A-"
+
+db.cursor.execute(f"UPDATE students SET name='{new_name}' WHERE netid='ab123'")
+db.commit()
+```
+
+---
+
+list tables:
+
+```sql
+select * from sqlite_master where type='table';
+```
 
 ---
 
