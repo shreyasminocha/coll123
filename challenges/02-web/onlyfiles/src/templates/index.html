@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>onlyfiles</title>
+		<link
+			rel="stylesheet"
+			href="https://minimalcss.jwestman.net/minimal.min.css"
+		/>
+	</head>
+	<body>
+		<h1>onlyfiles</h1>
+
+		<p>note: browsing 'premium' documents is not permitted.</p>
+		<p>(leave query empty to return all accessible documents)</p>
+		<form method="POST">
+			<input type="text" name="query" placeholder="something" />
+			<input type="submit" value="Search" />
+		</form>
+
+		<ul>
+			{% if results %} {% for name, path in results %}
+			<li><a href="/static/file/{{path}}">{{name}}</a></li>
+			{% endfor %} {% endif %}
+		</ul>
+	</body>
+</html>

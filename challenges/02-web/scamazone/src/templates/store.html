@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>scamazone</title>
+		<link
+			rel="stylesheet"
+			href="https://minimalcss.jwestman.net/minimal.min.css"
+		/>
+	</head>
+	<body>
+		<h1>Store</h1>
+
+		<p>you have {{ rowbux }} rowbux</p>
+
+		<ul>
+			{% for bs in bullshit %}
+			<li><b>{{ bs }}</b>: out of stock</li>
+			{% endfor %}
+
+			<li>
+				<b>snowden revelations (2013)</b>:
+				<a
+					href="https://www.theguardian.com/world/interactive/2013/nov/01/snowden-nsa-files-surveillance-revelations-decoded"
+					>free</a
+				>
+			</li>
+
+			<li>
+				<b>flag</b>: {{ flag_price }} rowbux
+
+				<form method="POST" action="/buy/flag" style="display: inline">
+					<input type="submit" value="Buy" />
+				</form>
+			</li>
+		</ul>
+
+		<small><a href="/logout">logout</a></small>
+	</body>
+</html>

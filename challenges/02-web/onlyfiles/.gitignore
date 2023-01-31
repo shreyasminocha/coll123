@@ -1,0 +1,2 @@
+src/static/file/*
+!src/static/file/.gitkeep

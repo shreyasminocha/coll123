@@ -1,1 +1,8 @@
-challenges
+venv
+__pycache__
+node_modules
+slides/*.pdf
+*.sqlite
+*.db
+solve.py
+challenges/**/dist
