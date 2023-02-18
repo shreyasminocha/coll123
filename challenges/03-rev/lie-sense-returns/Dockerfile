@@ -1,0 +1,18 @@
+FROM alpine:3
+
+RUN apk add --no-cache build-base socat
+
+RUN adduser --disabled-password --gecos '' hacker
+RUN chown -R root:hacker /home/hacker/
+RUN chmod 750 /home/hacker
+RUN touch /home/hacker/flag.txt
+RUN chown root:hacker /home/hacker/flag.txt
+RUN chmod 440 /home/hacker/flag.txt
+WORKDIR /home/hacker/
+
+COPY ./flag.txt /home/hacker
+COPY ./lie-sense.c /home/hacker
+COPY ./Makefile /home/hacker
+RUN make
+
+CMD socat TCP-LISTEN:8000,reuseaddr,fork EXEC:"/home/hacker/lie-sense"
