@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{{ category }}</title>
+	</head>
+	<body>
+		<script>
+			function submit() {
+				const title = document.querySelector('input[name=title]');
+				const url = document.querySelector('input[name=url]');
+
+				fetch('/posts/{{ category }}', {
+					method: 'POST',
+					body: JSON.stringify({
+						title: title.value,
+						url: url.value,
+					}),
+				}).then((res) => {
+					window.location.reload();
+				});
+			}
+		</script>
+
+		<label for="title">title</label>
+		<input type="text" name="title" placeholder="an interesting title" />
+
+		<label for="url">url</label>
+		<input type="text" name="url" placeholder="https://example.com" />
+
+		<input type="submit" value="Post" onclick="submit()" />
+
+		<h2>{{ category }}</h2>
+		<ul>
+			{% for title, url in posts %}
+			<!-- such secure. much saf -->
+			<li>
+				{{ title }}
+				<img src="{{ url | safe }}" />
+			</li>
+			{% endfor %}
+		</ul>
+
+		<form action="/simulate-admin" method="POST">
+			<input type="hidden" name="category" value="{{ category }}" />
+			<input type="submit" value="browse category on behalf of admin" />
+		</form>
+	</body>
+</html>

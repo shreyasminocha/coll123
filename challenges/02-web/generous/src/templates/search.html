@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>streeeeeem</title>
+		<link
+			rel="stylesheet"
+			href="https://minimalcss.jwestman.net/minimal.min.css"
+		/>
+	</head>
+	<body>
+		<p>search:</p>
+		<form method="GET">
+			<input type="text" name="q" />
+			<input type="submit" value="search" />
+		</form>
+
+		<p>make the admin click a link to a search query:</p>
+		<form method="GET" action="/search-as-admin" method="POST">
+			<input type="text" name="q" />
+			<input type="submit" value="search on behalf of admin" />
+		</form>
+
+		{% if query %}
+		<h1>search results for {{ query | safe }}</h1>
+		{% endif %}
+
+		<ul>
+			{% for streamer in streamers %}
+			<li>{{ streamer[0] }}</li>
+			{% endfor %}
+		</ul>
+
+		<small><a href="/logout">logout</a></small>
+	</body>
+</html>
