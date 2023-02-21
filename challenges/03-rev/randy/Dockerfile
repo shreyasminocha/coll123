@@ -1,8 +1,9 @@
-FROM alpine:3
+FROM archlinux:base-devel
 
-RUN apk add --no-cache build-base socat
+RUN pacman -Sy
+RUN pacman -S --noconfirm socat
 
-RUN adduser --disabled-password --gecos '' hacker
+RUN useradd -m hacker
 RUN chown -R root:hacker /home/hacker/
 RUN chmod 750 /home/hacker
 RUN touch /home/hacker/flag.txt
