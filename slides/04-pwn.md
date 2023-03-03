@@ -106,6 +106,20 @@ p.interactive()
 
 ### shellcode
 
+compiled bytes (position-independent) that do stuff
+
+examples:
+
+- open a shell
+- read a file
+- change permissions on a file
+- callback shell
+- …
+
+considerations: prohibited bytes, …
+
+---
+
 ```
 mov rax, 59
 mov rbx, 0x68732f2f6e69622f
@@ -114,18 +128,24 @@ mov rdi, rsp
 mov rsi, 0
 mov rdx, 0
 syscall
-
-binsh:
-    .string "/bin/sh"
 ```
 
 ---
 
-### read ⊕ write
+### write ⊕ execute
+
+don't execute stack contents as code!
+
+gcc requires you to explicitly disable this (`-z execstack`).
 
 ---
 
 ### stack canaries
+
+1. insert some secret bytes at the boundaries of buffers
+2. before leaving the function, verify that they haven't been overwritten
+
+gcc requires you to explicitly disable this (`-fno-stack-protector`).
 
 ---
 
@@ -134,3 +154,14 @@ binsh:
 ---
 
 ### rop
+
+1. make a list of useful gadgets
+2. chain gadgets to execute arbitrary-ish assembly
+3. ???
+4. profit
+
+<!-- also jop -->
+
+---
+
+### format string vulns
