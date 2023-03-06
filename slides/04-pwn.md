@@ -120,14 +120,44 @@ considerations: prohibited bytes, …
 
 ---
 
-```
+x86-64 shellcode to do `execve("/bin/sh", NULL, NULL)`
+
+```assembly
+/* syscall number for execve */
 mov rax, 59
+
+/* bytes corresponding to "/bin/sh" */
 mov rbx, 0x68732f2f6e69622f
+
+/* move the string to the stack */
 push rbx
+
+/* set the first arg to the address of the string */
 mov rdi, rsp
+
+/* argv is NULL */
 mov rsi, 0
+
+/* envp is NULL */
 mov rdx, 0
+
 syscall
+```
+
+---
+
+### assembling with pwntools
+
+```py
+assembly = '''
+    nop
+    nop
+    nop
+'''
+
+# convert assembly to bytes
+# amd64 = intel x86-64
+shellcode = asm(assembly, arch='amd64')
 ```
 
 ---
@@ -135,6 +165,8 @@ syscall
 ### write ⊕ execute
 
 don't execute stack contents as code!
+
+the pages of memory for the stack should never be executable!
 
 gcc requires you to explicitly disable this (`-z execstack`).
 
@@ -147,9 +179,15 @@ gcc requires you to explicitly disable this (`-z execstack`).
 
 gcc requires you to explicitly disable this (`-fno-stack-protector`).
 
+pretty solid. if you can somehow leak the canary though, you can just delicately replace it.
+
 ---
 
 ### aslr
+
+address-space layout randomization
+
+moves the stack around to make it harder for the attacker to guess the location of their exploits.
 
 ---
 
@@ -165,3 +203,5 @@ gcc requires you to explicitly disable this (`-fno-stack-protector`).
 ---
 
 ### format string vulns
+
+[_optional reading_](https://cs155.stanford.edu/papers/formatstring-1.2.pdf)
