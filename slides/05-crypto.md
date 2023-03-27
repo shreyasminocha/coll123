@@ -109,6 +109,12 @@ can use the chinese remainder theorem to find $m^e$. next, for small $e$ we can 
 
 ## demo: sha256 rainbow table
 
+```sh
+cat students.json | jq -r '.[].name' | while read name
+    echo $name '=' (echo -n $name | tr '[:upper:]' '[:lower:]' | sha256sum)
+end
+```
+
 ---
 
 ## diffie-hellman key exchange
