@@ -73,6 +73,37 @@ Assignments are structured like CTFs. They're deployed at [123.sec.rice.edu](htt
 | [blackjack](./challenges/03-rev/blackjack)                 | 50     |
 | [randy](./challenges/03-rev/randy)                         | 60     |
 
+### week 06
+
+| challenge                                | points |
+| ---------------------------------------- | ------ |
+| [greet](./challenges/04-pwn/greet)       | 20     |
+| [feedback](./challenges/04-pwn/feedback) | 40     |
+| [girlboss](./challenges/04-pwn/girlboss) | 50     |
+| [no cap](./challenges/04-pwn/no-cap)     | 50     |
+| [odd](./challenges/04-pwn/odd)           | 55     |
+
+### week 07
+
+| challenge                                            | points |
+| ---------------------------------------------------- | ------ |
+| ["i'm in"](./challenges/04-pwn/im-in)                | 30     |
+| [instruction](./challenges/04-pwn/instruction)       | 40     |
+| [🛝](./challenges/04-pwn/slide)                       | 50     |
+| [sendfile](./challenges/04-pwn/sendfile)             | 55     |
+| [roman numerals](./challenges/04-pwn/roman-numerals) | 60     |
+
+### week 08
+
+| challenge                                               | points |
+| ------------------------------------------------------- | ------ |
+| [xor](./challenges/05-crypto/xor)                       | 20     |
+| [second chances](./challenges/05-crypto/second-chances) | 30     |
+| [context](./challenges/05-crypto/context)               | 30     |
+| [xoracle](./challenges/05-crypto/xoracle)               | 50     |
+| [rsa](./challenges/05-crypto/pow)                       | 50     |
+| [fax](./challenges/05-crypto/fax)                       | 50     |
+
 ## Licenses
 
 Slides are licensed under the [CC-BY-SA 4.0 International License](./LICENSE-CC-BY-SA). Code is licensed under the [MIT License](./LICENSE-MIT).
