@@ -65,6 +65,12 @@ Assignments are structured like CTFs. They're deployed at [123.sec.rice.edu](htt
 |  09   | [careless whisper](./challenges/05-crypto/careless-whisper) |   40   |
 |  09   | [discreet logging](./challenges/05-crypto/dlog)             |   50   |
 |  09   | [mallory](./challenges/05-crypto/mallory)                   |   60   |
+|  10   | time                                                        |   20   |
+|  10   | traitor                                                     |   50   |
+|  10   | itch                                                        |   50   |
+|  10   | rabbithole                                                  |   50   |
+|  10   | doxx                                                        |   55   |
+|  10   | reapo                                                       |   55   |
 
 ## Licenses
 
