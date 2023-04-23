@@ -8,3 +8,4 @@ solve.py
 *.i64
 challenges/*/dist
 challenges/*/.*
+demos/forensics
